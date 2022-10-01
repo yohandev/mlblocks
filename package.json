@@ -1,0 +1,15 @@
+{
+  "name": "mlblocks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/yohandev/mlblocks.git",
+  "author": "Navpreet Singh(nsingh14@mit.edu), Kavya Anbarasu(kavyaa@mit.edu), Niko Tsakiris(tsak27@mit.edu), Yohan Guyomard(yohang@mit.edu)",
+  "license": "MIT",
+  "scripts": {
+      "build": "./node_modules/.bin/esbuild src/index.js --bundle --minify --sourcemap --outfile=www/out.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.10",
+    "jquery": "^3.6.1"
+  }
+}
