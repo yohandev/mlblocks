@@ -50,6 +50,16 @@ export default class Node {
     uicontents() {
         throw "virtual function!"
     }
+
+    refresh() {
+        if (this.ui.img === null) {
+            return
+        }
+        this.ui.img.beginPath()
+        this.ui.img.rect(0, 0, 28, 28)
+        this.ui.img.fillStyle = "black"
+        this.ui.img.fill()
+    }
 }
 
 // View/Controller
@@ -62,6 +72,13 @@ Node.UI = class {
                 ${this.model.uicontents()}
             </div>
         `)
+        this.img = this.div.find('canvas')?.[0]?.getContext('2d')
+        if (this.img) {
+            this.img.beginPath();
+            this.img.rect(0, 0, 28, 28);
+            this.img.fillStyle = "red";
+            this.img.fill();
+        }
 
         this.div.draggable(this.pos, {
             start: (_) => {
@@ -94,6 +111,7 @@ Node.UI = class {
     snap(node) {
         node.ui.div.css('translate', `${this.width - 14}px 0px`)
         this.div.append(node.ui.div)
+        this.model.refresh()
     }
 
     // Is the provided node in range to be snapped?

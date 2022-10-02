@@ -21,4 +21,6 @@ $(document).ready(() => {
     nodes.push(new NodeImage("c", nodes))
     nodes.push(new NodeBlur("d", nodes))
     nodes.push(new NodeLog("e", nodes))
+
+    nodes.forEach(n => n.refresh())
 })
