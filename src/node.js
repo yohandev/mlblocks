@@ -54,7 +54,11 @@ Node.UI = class {
         this.pos = { x: 0, y: 0 }
         this.div = $(`
             <div class="node">
-                ${this.model.name}
+                <div class="node-container">
+                    <div class="node-contents">
+                        <h1>my name is: ${this.model.name}. hello!</h1>
+                    </div>
+                </div>
             </div>
         `)
         this.div.draggable(this.pos, {
@@ -75,7 +79,19 @@ Node.UI = class {
             },
         })
         this.div.appendTo(NODES_ROOT)
-        this.div.css("background", ['crimson', 'cornflowerblue', 'olive'].sample())
+        this.div.css("fill", ['crimson', 'cornflowerblue', 'olive'].sample())
+
+        const width = this.div.find('.node-contents')[0].scrollWidth
+        console.log(width)
+        const height = this.div[0].getBoundingClientRect().height
+        this.div.find('.node-container').append($(`
+            <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 0 ${width + 150 + 39} 145">
+                <path d="${paths['STACK'](width + 150)}" stroke-width="3"/>
+            </svg>
+        `))
+        this.div.css({
+            width: width + 30
+        })
     }
 
     // Disconnect the specified block from me
@@ -104,12 +120,12 @@ Node.UI = class {
 
     // Highlight this node
     focus() {
-        this.div.css("border", "solid 1px yellow")
+        this.div.css("stroke", "yellow")
     }
 
     // Unhighlight this node
     blur() {
-        this.div.css("border", "none")
+        this.div.css("stroke", "none")
     }
 
     // Find a snappable node
@@ -119,4 +135,51 @@ Node.UI = class {
 
     // Width of this node, to offset when snapping
     get width() { return this.div.width() }
+}
+
+// Block paths as a function of width
+const paths = {
+    CAP: (w) => 
+        `M72.5.5
+        S0,0,.5,72.5
+        s72,72,72,72
+        h${Math.max(116, w)}
+        a10,10,0,0,0,10-10
+        V111.59
+        a5,5,0,0,1,2.77-4.47
+        l12.47-6.24
+        a5,5,0,0,0,2.76-4.47
+        V48.59
+        a5,5,0,0,0-2.76-4.47
+        l-12.47-6.24
+        a5,5,0,0,1-2.77-4.47
+        V10.5a10,10,0,0,0-10-10
+        Z`,
+    STACK: (w) =>
+        `M.5,10.5
+        V33.41
+        a5,5,0,0,0,2.76,4.47
+        l12.48,6.24
+        a5,5,0,0,1,2.76,4.47
+        V96.41
+        a5,5,0,0,1-2.76,4.47
+        L3.26,107.12
+        A5,5,0,0,0,.5,111.59
+        V134.5
+        a10,10,0,0,0,10,10
+        h${Math.max(w, 197)}
+        a10,10,0,0,0,10-10
+        V111.59
+        a5,5,0,0,1,2.76-4.47
+        l12.48-6.24
+        a5,5,0,0,0,2.76-4.47
+        V48.59
+        a5,5,0,0,0-2.76-4.47
+        l-12.48-6.24
+        a5,5,0,0,1-2.76-4.47
+        V10.5
+        a10,10,0,0,0-10-10
+        H10.5
+        A10,10,0,0,0,.5,10.5
+        Z`
 }
