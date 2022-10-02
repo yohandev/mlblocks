@@ -8,6 +8,7 @@
 // download dependencies the first time)
 import $ from 'jquery'
 
-const abc = $(`<h1>Hello, World</h1>`)
+
+const abc = $(``)
 
 abc.appendTo(document.body)
