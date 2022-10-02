@@ -4,10 +4,14 @@
 // Use lambdas over functions, or methods in classes
 // No semicolons if you don't need them(me and the boys hate them)
 // Commands:
-// Build using `yarn run build`(make sure you `yarn init` first to
+// Build using `yarn run build`(make sure you `yarn` first to
 // download dependencies the first time)
-import $ from 'jquery'
+import Node from './block'
 
-const abc = $(`<h1>Hello, World</h1>`)
+const nodes = []
 
-abc.appendTo(document.body)
+nodes.push(new Node(nodes))
+nodes.push(new Node(nodes))
+nodes.push(new Node(nodes))
+nodes.push(new Node(nodes))
+nodes.push(new Node(nodes))
