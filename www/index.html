@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="tabs.css">
+    <link rel="stylesheet" type="text/css" href="./canvas.css" media="screen"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,17 +22,14 @@
     <div class="inner">
         <div class="logo">
             <div>
-                <!-- The below line can be an image or a h1, either will work -->
                 <img src="assets/aiBlocks_logo.png" alt="aiBlocks Logo">
             </div>
         </div>
 
         <nav>
-            
             <!-- <li><span><a href="">About</a></span></li>
             <li><span><a href="">Work</a></span></li>
             <li><span><a href="">History</a></span></li> -->
-            <li><span><a href="" class="login-button">Log In</a></span></li>
             
         </nav>
     </div>
@@ -41,17 +39,112 @@
 
     <div class="tabs-left">
       <div class="mytabs">
-        <input type="radio" id="tabcode" name="mytabs" checked="checked">
-        <label for="tabcode">Code</label>
+        <input type="radio" id="tabcode" name="mytabs" >
+        <label class="tablabel" for="tabcode">Code</label>
         <div class="tab">
           
         </div>
     
-        <input type="radio" id="tabart" name="mytabs">
-        <label for="tabart">Art</label>
+        <input type="radio" id="tabart" name="mytabs" checked="checked">
+        <label class="tablabel" for="tabart">Art</label>
         <div class="tab">
+          <!-- canvas -->
+          <div class="total-wrapper">
+            
+
+            <div class="canvas-wrapper">
+              <div class="inputs-wrapper">
+                <div class="pen-color">
+                  <label for="penColor">Pen Color</label><br>
+                  <input class="color-selector" type="color" id="penColor" value="#000000">
+                </div>
+                <div class="line-width">
+                  <label for="lineWidth">Pen Width</label><br>
+                  <input class="slider"type="range" min="1" max="10" value="2" id="lineWidth">
+                </div>
+                
+                <div>
+                  <input class="data-button" type="button" value="send to TRAIN" id="saveTrain"></input>
+                </div>
+                <div>
+                  <input class="data-button" type="button" value="send to TEST" id="saveTest"></input>
+                </div>
+
+                <div>
+                  <input class="clear-canvas" type="button" value="clear canvas" id="clearCanvas"></input>
+                </div>
+              </div>
+              <div class="canvas-div"> 
+                  <canvas id = "sketchCanvas" width = "24px" height = "24px"></canvas>                 
+              </div>
+
+              <div class="results-wrapper">
+
+                <div>Previous Images</div>
+                
+                <div class="image-box" id="imagebox0"></div>
+                <div class="image-box" id="imagebox1"></div>
+                <div class="image-box" id="imagebox2"></div>
+                <div class="image-box" id="imagebox3"></div>
+                <div class="image-box" id="imagebox4"></div>
+                <div class="image-box" id="imagebox5"></div>
+                <div class="image-box" id="imagebox6"></div>
+                
+                <div class="image-box" id="imagebox7"></div>
+                <div class="image-box" id="imagebox8"></div>
+                <div class="image-box" id="imagebox9"></div>
+                <div class="image-box" id="imagebox10"></div>
+                <div class="image-box" id="imagebox11"></div>
+                <div class="image-box" id="imagebox12"></div>
+                <div class="image-box" id="imagebox13"></div>
+                
+                <div class="image-box" id="imagebox14"></div>
+                <div class="image-box" id="imagebox15"></div>
+                <div class="image-box" id="imagebox16"></div>
+                <div class="image-box" id="imagebox17"></div>
+                <div class="image-box" id="imagebox18"></div>
+                <div class="image-box" id="imagebox19"></div>
+                <div class="image-box" id="imagebox20"></div>
+                <div class="image-box" id="imagebox21"></div>
+                <div class="image-box" id="imagebox22"></div>
+                <div class="image-box" id="imagebox23"></div>
+                <div class="image-box" id="imagebox24"></div>
+                <div class="image-box" id="imagebox25"></div>
+                <div class="image-box" id="imagebox26"></div>
+                <div class="image-box" id="imagebox27"></div>
+                <div class="image-box" id="imagebox28"></div>
+                <div class="image-box" id="imagebox29"></div>
+                <div class="image-box" id="imagebox30"></div>
+                <div class="image-box" id="imagebox31"></div>
+                <div class="image-box" id="imagebox32"></div>
+                <div class="image-box" id="imagebox33"></div>
+                <div class="image-box" id="imagebox34"></div>
+                <div class="image-box" id="imagebox35"></div>
+                <div class="image-box" id="imagebox36"></div>
+                <div class="image-box" id="imagebox37"></div>
+                <div class="image-box" id="imagebox38"></div>
+                <div class="image-box" id="imagebox39"></div>
+                <div class="image-box" id="imagebox40"></div>
+                <div class="image-box" id="imagebox41"></div>
+                <div class="image-box" id="imagebox42"></div>
+                <div class="image-box" id="imagebox43"></div>
+                <div class="image-box" id="imagebox44"></div>
+                <div class="image-box" id="imagebox45"></div>
+                <div class="image-box" id="imagebox46"></div>
+                
+
+              </div>
+              
+              
+            
+          </div>
+          </div>
+            
+            
+            <script src="../src/canvas.js" ></script>  
+
           
-        </div>
+      </div>
     
     
       </div>

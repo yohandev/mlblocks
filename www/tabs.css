@@ -11,7 +11,7 @@
 .mytabs input[type="radio"] {
     display: none;
 }
-.mytabs label {
+.tablabel {
     padding: 10px;
     width: 80px;
     height: 20px;
