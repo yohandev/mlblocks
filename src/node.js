@@ -2,10 +2,10 @@ import $ from 'jquery'
 import "./util"
 
 // Root elements for head nodes
-const NODES_ROOT = $(`
-    <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="500px">
-    </svg>
-`).appendTo(document.body)
+const NODES_ROOT = $(document.body)
+//     <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="500px">
+//     </svg>
+// `).appendTo(document.body)
 
 /** A single node("block") in the project graph("scripts") */
 // Model
@@ -55,9 +55,22 @@ Node.UI = class {
     constructor(node) {
         this.model = node
         this.pos = { x: 0, y: 0 }
-        this.div = $(document.createElementNS("http://www.w3.org/2000/svg", "g")).attr({
-            'class': 'node'
-        })
+        // this.div = $(document.createElementNS("http://www.w3.org/2000/svg", "g")).attr({
+        //     'class': 'node'
+        // })
+        this.div = $(`
+            <div class="node-container">
+                <img class="node-tail" src="./tail.svg" height="100"/>
+                <div class="node-content">
+                    multiply
+                    <div class="node-preview"></div>
+                    <div class="node-input">
+                        <input type="text" value="1.0">
+                    </div>
+                </div>
+                <img class="node-head" src="./head.svg" height="100"/>
+            </div>
+        `)
 
         this.div.draggable(this.pos, {
             start: (_) => {
@@ -78,23 +91,23 @@ Node.UI = class {
         })
         this.div.appendTo(NODES_ROOT)
 
-        const bg = $(document.createElementNS("http://www.w3.org/2000/svg", "path")).attr({
-            'stroke-width': '2',
-            'stroke': '#000',
-            'fill': '#fff',
-        }).appendTo(this.div)
-        $(document.createElementNS("http://www.w3.org/2000/svg", "text")).attr({
-            'x': '40',
-            'y': '85',
-            'fill': '#000',
-            'stroke-width': '0',
-        })
-            .append("multiply really long numbers")
-            .appendTo(this.div)
-        const w = this.div[0].getBoundingClientRect().width
-        bg.attr({
-            'd': paths['STACK'](w + 50),
-        })
+        // const bg = $(document.createElementNS("http://www.w3.org/2000/svg", "path")).attr({
+        //     'stroke-width': '2',
+        //     'stroke': '#000',
+        //     'fill': '#fff',
+        // }).appendTo(this.div)
+        // $(document.createElementNS("http://www.w3.org/2000/svg", "text")).attr({
+        //     'x': '40',
+        //     'y': '85',
+        //     'fill': '#000',
+        //     'stroke-width': '0',
+        // })
+        //     .append("multiply really long numbers")
+        //     .appendTo(this.div)
+        // const w = this.div[0].getBoundingClientRect().width
+        // bg.attr({
+        //     'd': paths['STACK'](w + 50),
+        // })
     }
 
     // Disconnect the specified block from me
@@ -106,14 +119,14 @@ Node.UI = class {
 
     // Snap the specified block to me
     snap(node) {
-        node.ui.div.css('translate', `${this.width - 18}px 0px`)
+        node.ui.div.css('translate', `${this.width - 14}px 0px`)
         this.div.append(node.ui.div)
     }
 
     // Is the provided node in range to be snapped?
     snappable(node) {
-        const r1 = this.div.find('path')[0].getBoundingClientRect()
-        const r2 = node.ui.div.find('path')[0].getBoundingClientRect()
+        const r1 = this.div[0].getBoundingClientRect()
+        const r2 = node.ui.div[0].getBoundingClientRect()
 
         const dx = r1.left - r2.right
         const dy = Math.abs(r1.top - r2.top)
@@ -123,12 +136,12 @@ Node.UI = class {
 
     // Highlight this node
     focus() {
-        this.div.css("stroke", "yellow")
+        this.div.css("filter", "drop-shadow(5px 0px 0px grey")
     }
 
     // Unhighlight this node
     blur() {
-        this.div.css("stroke", "none")
+        this.div.css("filter", "none")
     }
 
     // Find a snappable node
@@ -138,7 +151,7 @@ Node.UI = class {
 
     // Width of this node, to offset when snapping
     get width() {
-        return this.div.find('path')[0].getBBox().width
+        return this.div[0].getBoundingClientRect().width
     }
 }
 
