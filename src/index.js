@@ -6,12 +6,15 @@
 // Commands:
 // Build using `yarn run build`(make sure you `yarn` first to
 // download dependencies the first time)
-import Node from './node'
+import NodeMultiply from './nodes/multiply'
+import NodeLog from './nodes/log'
+import NodeBlur from './nodes/blur'
+import NodeImage from './nodes/image'
 
 const nodes = []
 
-nodes.push(new Node("a", nodes))
-nodes.push(new Node("b", nodes))
-nodes.push(new Node("c", nodes))
-nodes.push(new Node("d", nodes))
-nodes.push(new Node("e", nodes))
+nodes.push(new NodeLog("a", nodes))
+nodes.push(new NodeMultiply("b", nodes))
+nodes.push(new NodeImage("c", nodes))
+nodes.push(new NodeBlur("d", nodes))
+nodes.push(new NodeLog("e", nodes))

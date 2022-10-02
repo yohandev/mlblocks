@@ -1,11 +1,8 @@
 import $ from 'jquery'
-import "./util"
+import "../util"
 
 // Root elements for head nodes
 const NODES_ROOT = $(document.body)
-//     <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="500px">
-//     </svg>
-// `).appendTo(document.body)
 
 /** A single node("block") in the project graph("scripts") */
 // Model
@@ -48,6 +45,11 @@ export default class Node {
         }
         return this.next.leaf
     }
+
+    // UI contents for this node
+    uicontents() {
+        throw "virtual function!"
+    }
 }
 
 // View/Controller
@@ -55,20 +57,9 @@ Node.UI = class {
     constructor(node) {
         this.model = node
         this.pos = { x: 0, y: 0 }
-        // this.div = $(document.createElementNS("http://www.w3.org/2000/svg", "g")).attr({
-        //     'class': 'node'
-        // })
         this.div = $(`
             <div class="node-container">
-                <img class="node-tail" src="./tail.svg" height="100"/>
-                <div class="node-content">
-                    multiply
-                    <div class="node-preview"></div>
-                    <div class="node-input">
-                        <input type="text" value="1.0">
-                    </div>
-                </div>
-                <img class="node-head" src="./head.svg" height="100"/>
+                ${this.model.uicontents()}
             </div>
         `)
 
@@ -90,24 +81,6 @@ Node.UI = class {
             },
         })
         this.div.appendTo(NODES_ROOT)
-
-        // const bg = $(document.createElementNS("http://www.w3.org/2000/svg", "path")).attr({
-        //     'stroke-width': '2',
-        //     'stroke': '#000',
-        //     'fill': '#fff',
-        // }).appendTo(this.div)
-        // $(document.createElementNS("http://www.w3.org/2000/svg", "text")).attr({
-        //     'x': '40',
-        //     'y': '85',
-        //     'fill': '#000',
-        //     'stroke-width': '0',
-        // })
-        //     .append("multiply really long numbers")
-        //     .appendTo(this.div)
-        // const w = this.div[0].getBoundingClientRect().width
-        // bg.attr({
-        //     'd': paths['STACK'](w + 50),
-        // })
     }
 
     // Disconnect the specified block from me
@@ -136,12 +109,12 @@ Node.UI = class {
 
     // Highlight this node
     focus() {
-        this.div.css("filter", "drop-shadow(5px 0px 0px grey")
+        this.div.css("filter", "drop-shadow(5px 0px 0px grey)")
     }
 
     // Unhighlight this node
     blur() {
-        this.div.css("filter", "none")
+        this.div.css("filter", "")
     }
 
     // Find a snappable node
@@ -153,51 +126,4 @@ Node.UI = class {
     get width() {
         return this.div[0].getBoundingClientRect().width
     }
-}
-
-// Block paths as a function of width
-const paths = {
-    CAP: (w) => 
-        `M72.5.5
-        S0,0,.5,72.5
-        s72,72,72,72
-        h${Math.max(116, w)}
-        a10,10,0,0,0,10-10
-        V111.59
-        a5,5,0,0,1,2.77-4.47
-        l12.47-6.24
-        a5,5,0,0,0,2.76-4.47
-        V48.59
-        a5,5,0,0,0-2.76-4.47
-        l-12.47-6.24
-        a5,5,0,0,1-2.77-4.47
-        V10.5a10,10,0,0,0-10-10
-        Z`,
-    STACK: (w) =>
-        `M.5,10.5
-        V33.41
-        a5,5,0,0,0,2.76,4.47
-        l12.48,6.24
-        a5,5,0,0,1,2.76,4.47
-        V96.41
-        a5,5,0,0,1-2.76,4.47
-        L3.26,107.12
-        A5,5,0,0,0,.5,111.59
-        V134.5
-        a10,10,0,0,0,10,10
-        h${Math.max(w, 197)}
-        a10,10,0,0,0,10-10
-        V111.59
-        a5,5,0,0,1,2.76-4.47
-        l12.48-6.24
-        a5,5,0,0,0,2.76-4.47
-        V48.59
-        a5,5,0,0,0-2.76-4.47
-        l-12.48-6.24
-        a5,5,0,0,1-2.76-4.47
-        V10.5
-        a10,10,0,0,0-10-10
-        H10.5
-        A10,10,0,0,0,.5,10.5
-        Z`
 }
