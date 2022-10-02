@@ -1,10 +1,9 @@
-.node {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 
-    /* width: 150px; */
-    height: 100px;
+.node {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
 }
 
 .node-container {

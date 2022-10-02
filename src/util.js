@@ -7,7 +7,7 @@ $.fn.draggable = function(pos, handlers=null) {
             move(e) {
                 pos.x += e.dx
                 pos.y += e.dy
-                e.target.style.transform = `translate(${pos.x}px, ${pos.y}px)`
+                $(e.target).css('translate', `${pos.x}px ${pos.y}px`)
                 
                 handlers?.move?.(e)
             },
