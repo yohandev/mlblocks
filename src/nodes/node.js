@@ -2,7 +2,7 @@ import $ from 'jquery'
 import "../util"
 
 // Root elements for head nodes
-const NODES_ROOT = $(document.body)
+const NODES_ROOT = () => $('#code-tab')
 
 /** A single node("block") in the project graph("scripts") */
 // Model
@@ -80,12 +80,12 @@ Node.UI = class {
                 }
             },
         })
-        this.div.appendTo(NODES_ROOT)
+        this.div.appendTo(NODES_ROOT())
     }
 
     // Disconnect the specified block from me
     unsnap(node) {
-        node.ui.div.appendTo(NODES_ROOT)
+        node.ui.div.appendTo(NODES_ROOT())
         node.ui.pos.x = this.pos.x + this.width
         node.ui.pos.y = this.pos.y
     }
