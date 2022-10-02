@@ -13,3 +13,71 @@ body {
     /* display: flex; */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
+.node-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.node-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 0 5px;
+
+    border-top: 1.5px solid black;
+    border-bottom: 1.5px solid black;
+    background: white;
+}
+
+.node-tail, .node-head, .node-content {
+    user-select: none;
+}
+
+.node-content * {
+    margin: 0px 5px;
+}
+
+.node-preview {
+    width: 70px;
+    height: 70px;
+
+    border: 1.5px solid black;
+    border-radius: 10px;
+}
+
+.node-input {
+    width: 50px;
+    height: 30px;
+
+    background: white;
+    border: 1.5px solid black;
+    border-radius: 30px;
+
+    position: absolute;
+    bottom: -15%;
+
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.node-input input {
+    width: 30px;
+
+    border: 0;
+    outline: 0;
+    text-align: center;
+}

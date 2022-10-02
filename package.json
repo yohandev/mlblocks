@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "esbuild": "^0.15.10",
+    "interactjs": "^1.10.17",
     "jquery": "^3.6.1"
   }
 }
