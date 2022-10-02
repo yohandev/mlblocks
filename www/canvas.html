@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Sketch-A-Thing</Title>
+        <link rel="stylesheet" type="text/css" href="./canvas.css" media="screen"/>
+    </head>
+    <body>
+        <!-- Create a Header -->
+        <div>
+            <center>
+                <h1>This is the mf pixel board</h1>
+            </center>
+        </div>
+        <!-- Create the Canvas Element -->
+        <div>
+            <center>
+                <canvas id = "sketchCanvas" width = "24" height = "24"></canvas>
+            </center>
+        </div>
+        <div>
+            <center>
+                <label for="penColor">Pen Color:</label>
+                <input type="color" id="penColor" value="#000000">
+                <label for="lineWidth">Pen Width:</label>
+                <input type="range" min="1" max="10" value="2" id="lineWidth">
+            </center>
+        </div>
+        <div>
+            <center>
+                <input type="button" value="clear canvas" id="clearCanvas">
+            </center>
+        </div>
+    </body>
+    <script src="./canvas.js" ></script>   
+</html>
