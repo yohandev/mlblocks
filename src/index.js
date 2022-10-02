@@ -6,12 +6,12 @@
 // Commands:
 // Build using `yarn run build`(make sure you `yarn` first to
 // download dependencies the first time)
-import Node from './block'
+import Node from './node'
 
 const nodes = []
 
-nodes.push(new Node(nodes))
-nodes.push(new Node(nodes))
-nodes.push(new Node(nodes))
-nodes.push(new Node(nodes))
-nodes.push(new Node(nodes))
+nodes.push(new Node("a", nodes))
+nodes.push(new Node("b", nodes))
+nodes.push(new Node("c", nodes))
+nodes.push(new Node("d", nodes))
+nodes.push(new Node("e", nodes))
