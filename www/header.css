@@ -4,6 +4,7 @@ header{
     border-bottom: solid 1px rgba(16, 16, 16, 0.1);
     background-color: #94B49F;
     font-family: 'Poppins';
+    color: #FCF8E8;
 }
 
 header .inner{
@@ -40,6 +41,7 @@ header .logo img{
 header nav{
     float: right;
     height: 100%;
+    
 }
 
 header nav li{
@@ -62,13 +64,15 @@ header nav a{
     color: #101010;
 }
 
-header nav .login-button{
+header nav .run-button{
     background-color: #FCF8E8; /* This HEX is the color of the button */
     color: #DF7861;
     padding: 10px 20px;
     border-radius: 4px;
+    
 }
 
-header nav .login-button:hover{
-    filter: brightness(1.05);
+header nav .run-button:hover{
+    filter: brightness(1.15);
 }
+
